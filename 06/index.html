@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="swiper.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<style>
+		*{margin: 0;padding: 0;text-decoration: none;}
+		[v-cloak]{display: none;}
+		a{
+			color: #878787;
+		}
+		/*swiper*/
+		html, body {
+			position: relative;
+			height: 100%;
+		}
+		.swiper-container {
+			width: 100%;
+			height: 100%;
+		}
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+		.swiper-pagination-bullet {
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			font-size: 12px;
+			color:#000;
+			opacity: 1;
+			background: rgba(0,0,0,0.2);
+		}
+		.swiper-pagination-bullet-active {
+			color:#fff;
+			background: #007aff;
+		}
+		.swiper-pagination span{
+			display: inline-block;
+			width: 40px;
+			height: 10px;
+			border-radius: 0px;
+		}
+		.swiper-slide img{
+			width: 100%;
+			height: 100%;
+		}
+		/*............*/
+		.nav a:hover{
+			border-bottom: 1px solid skyblue;
+			color: #519f10;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div style="width: 100%; height: 60px; line-height: 60px; z-index: 2;">
+			<div style="float: left;">
+				<img style="margin-left: 40px; margin-top: 8px; width: 80px; height: 50px;" src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvZjc0MTI0MDFiMDZjZjdjYmI4OTg5MTBjMTE2YzZlNzYucG5n.png" alt="">
+			</div>
+			<div style="padding-left: 60%;">
+				<div style="float: left;line-height: 60px;padding: 0 20px; color: red;" v-for="i in arr">
+					<div class="nav">
+						<a :href="i.path" style="font-size: 14px;">
+							{{i.name}}
+						</a>
+					</div>		 		
+				</div>
+			</div>
+			<div></div>
+		</div>
+		<div style="min-height: 1000px; background: pink;">
+			<router-view></router-view>
+		</div>
+		<div class="footer" style="height: 240px; background: #ccc;">
+			<div style="min-height: 240px; background: red;"></div>
+		</div>
+	</div>
+	<template id="home">
+		<div>
+			<div style="height: 100%;">
+				<!-- Swiper -->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNTkxNjY4MzYwNTc4MTlhMDVjNGZmNmQ5NWFjMzU0OGIuanBn.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNjFhNzJlOWFhNThhNzVhZjY0ZGFlMjgzYTAzMDQ1NDAuanBn.jpg" alt="">
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="about">
+		<div>
+			<div>
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNDlhZTM4YTg2N2VmNzVhNDA3M2RmNzRiYTFmOThjMjYuanBn.jpg" alt="">
+			</div>
+		</div>
+	</template>
+	<template id="tea">
+		<div>
+			<div style="height: 60px;overflow: hidden;">
+				<ul class="list">
+					<li v-for="i in tea_names" @click="type=i">{{i}}</li>
+				</ul>
+			</div>
+			<div style="overflow: hidden;">
+				<div v-for="i in tea_infos" class="teabox" v-show="type==i.type">
+					<div>
+						<img :src="i.img_url">
+					</div>
+					<div class="name">
+						{{i.name}}
+					</div>
+					<div style="color: #ccc;">
+						{{i.price}}
+					</div>
+				</div>
+				<div v-for="i in tea_infos" class="teabox" v-show="type=='全部'">
+					<div>
+						<img :src="i.img_url">
+					</div>
+					<div class="name">
+						{{i.name}}
+					</div>
+					<div style="color: #ccc;">
+						{{i.price}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="base">
+		<div>
+			基地
+		</div>
+	</template>
+	<template id="news">
+		<div>
+			新闻
+		</div>
+	</template>
+	<template id="contact">
+		<div>
+			联系
+		</div>
+	</template>
+	<template id="lee">
+		<el-carousel indicator-position="outside">
+			<el-carousel-item v-for="i in arr">
+				<img :src="i.img" alt="">
+			</el-carousel-item>
+		</el-carousel>
+	</template>
+</body>
+<script src="vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="vue-router.js"></script>
+<script src="swiper.min.js"></script>
+<script>
+	Vue.component('lee', {
+		template: '#lee',
+		data(){
+			return{
+				arr:[
+					{img:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNTkxNjY4MzYwNTc4MTlhMDVjNGZmNmQ5NWFjMzU0OGIuanBn.jpg'},
+					{img:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNjFhNzJlOWFhNThhNzVhZjY0ZGFlMjgzYTAzMDQ1NDAuanBn.jpg'}
+				],
+			}
+		}
+	})
+	var router = new VueRouter({
+		routes:[
+			{path:'/',component:{template:'#home'}},
+			{path:'/about',component:{template:'#about'}},
+			{path:'/tea',component:{template:'#tea'}},
+			{path:'/base',component:{template:'#base'}},
+			{path:'/news',component:{template:'#news'}},
+			{path:'/contact',component:{template:'#contact'}},
+		],
+	})
+	new Vue({
+		el:"#box",
+		router,
+		data:{
+			arr:[
+			   {name:'首页',path:'#/'},
+			   {name:'关于',path:'#/about'},
+			   {name:'茶叶',path:'#/tea'},
+			   {name:'基地',path:'#/base'},
+			   {name:'新闻',path:'#/news'},
+			   {name:'联系',path:'#/contact'},
+			],
+			tea_name:['全部','黄茶','乌龙茶','红茶','黑茶','白茶','花茶'],
+				tea_info:[
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'茉莉花茶',
+						price:'￥223.0',
+						type:'花茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'白牡丹',
+						price:'￥1235.0',
+						type:'白茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'白毫银针',
+						price:'￥258.0',
+						type:'白茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'云南普洱茶',
+						price:'￥500.0',
+						type:'黑茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'湖北老青茶',
+						price:'￥400.0',
+						type:'黑茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'霍山黄芽蒙洱银针',
+						price:'￥711.0',
+						type:'黄茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'蒙顶黄芽',
+						price:'￥450.0',
+						type:'黄茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'冻顶乌龙茶',
+						price:'￥620.0',
+						type:'乌龙茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'大红袍',
+						price:'￥3480.0',
+						type:'乌龙茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'祁门红茶',
+						price:'￥468.0',
+						type:'红茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'正山小种',
+						price:'￥952.0',
+						type:'红茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'西湖龙井特级',
+						price:'￥888.0',
+						type:'绿茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'洞庭碧螺春',
+						price:'￥880.0',
+						type:'绿茶'
+					}
+				]
+		}
+	})
+	var swiper = new Swiper('.swiper-container', {
+		pagination: {
+			el: '.swiper-pagination',
+		},
+		loop:true,
+	});
+</script>
+</html>

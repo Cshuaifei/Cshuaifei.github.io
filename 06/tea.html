@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;list-style: none;}
+		.nav{
+			line-height: 100px;
+			color: #000;
+			float: left;
+			padding: 0 20px;
+		}
+		.img{
+			padding: 0 30px;
+			float: left;
+		}
+		.nav_s{
+			float: right;
+		}
+		.list{
+			width: 100%;
+			float: right;
+			background: #ccc;
+		}
+		.list li{
+			font-size: 16px;
+			float: left;
+			padding: 0 15px;
+			line-height: 40px;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+		.teabox{
+			padding: 20px 15px;
+			float: left;
+		}
+		.teabox img{
+			width: 159px;
+			height: 159px;
+		}
+		.list li:hover{
+			color: green;
+			border-bottom: 1px solid green;
+		}
+		.b_img{
+			margin-bottom: 100px;
+		}
+		.zzjd{
+			font-size: 24px;
+			text-align: center;
+			height: 40px;
+			margin-bottom:20px;
+		}
+		.imgtop img{
+			width: 211px;
+			height: 211px;
+			float: left;
+			margin-right: 10px;
+			margin-bottom:10px;
+		}
+		.name{
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px solid #ccc;
+		}
+		.name:hover{
+			color: green;
+			border-bottom: 1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div style="height: 100px;">
+			<div class="img">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvZjc0MTI0MDFiMDZjZjdjYmI4OTg5MTBjMTE2YzZlNzYucG5n.png" alt="">
+			</div>
+			<div class="nav_s">
+				<div class="nav">
+					<router-link to="/">茶叶</router-link>
+				</div>
+				<div class="nav">
+					<router-link to="/base">基地</router-link>
+				</div>
+			</div>
+		</div>
+		<div style="min-height: 500px;border:1px solid #000;">
+			<router-view  :tean_arr="tea_name" :teai_arr="tea_info"></router-view>
+		</div> 
+		<!-- <div style="height: 200px;background: #ccc;"></div> -->
+	</div>
+	<template id="tea">
+		<div>
+			<div style="height: 60px;overflow: hidden;">
+				<ul class="list">
+					<li v-for="i in tea_names" @click="type=i">{{i}}</li>
+				</ul>
+			</div>
+			<div style="overflow: hidden;">
+				<div v-for="i in tea_infos" class="teabox" v-show="type==i.type">
+					<div>
+						<img :src="i.img_url">
+					</div>
+					<div class="name">
+						{{i.name}}
+					</div>
+					<div style="color: #ccc;">
+						{{i.price}}
+					</div>
+				</div>
+				<div v-for="i in tea_infos" class="teabox" v-show="type=='全部'">
+					<div>
+						<img :src="i.img_url">
+					</div>
+					<div class="name">
+						{{i.name}}
+					</div>
+					<div style="color: #ccc;">
+						{{i.price}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="base">
+		<div style="overflow: hidden;">
+			<div class="b_img">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzNlYjg4NTNhNmZkNTZiYWRhN2Q4ZjI4NjNkOWM1ODguanBn.jpg" alt=""  style="width: 100%;height: 260px;">
+			</div>
+			<div style="padding: 0 50px;">
+				<div class="zzjd">种植基地</div>
+				<div style="text-align: center;color: #000;margin-bottom: 30px;">
+公司拥有完整、科学、质量管理体系，通过ISO14001，ISO22000国际质量体系认 证，有机产品认证，拥有大量先进、专业的生产设备和检测仪器，秉承“顾客至上，锐意进取”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。</div>
+				<div class="imgtop">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNWQ3ZTc0ZDI3NTEzM2MxZmZkYTVkZTFmY2FiNGFkZTctMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzQwMmZhZTFiYWE3OTgxODA4MWYwM2I2N2UwZTU0ZDItMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMGQ5YWMxYWEzOWNmZmIzYzk4NDE0Njk4YzZmZGQwZjQtMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+				</div>
+				<div class="imgtop">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVkYTg5ZjIzMWEzOGFjODE5NmJiYmYyOTA5YWEyZjctMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMTI1ZmM2NTk4YWE0NmFlY2JkOWY1NDAzYzkwYjM3ODctMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNGRmMDFhNzRmYTBhZWFiODIyYmM1MThhY2M2ZWFhOTYtMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+					<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMmZlZDQ0NjA2NDI0N2FmZWI4YTk0ZmQ0NGRiMDc5NzktMzAweDMwMC5qcGc_p_p100_p_3D.jpg">
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script src="vue.js"></script>
+	<script src="vue-router.js"></script>
+	<script type="text/javascript">
+		// 第一步
+		var tea = {
+			template:'#tea',
+			props:['tean_arr','teai_arr'],
+			data:function(){
+				return{
+					tea_names:this.tean_arr,
+					tea_infos:this.teai_arr,
+					type:'全部'
+				}
+			}
+		}
+		var base = {
+			template:'#base'
+		}
+		// 第二步
+		var routes = [
+			{
+				path:'/',
+				component:tea
+			},
+			{
+				path:'/base',
+				component:base
+			}
+		]
+		// 第三步
+		var router = new VueRouter({
+			routes
+		})
+		new Vue({
+			el:'#box',
+			router,
+			data:{
+				tea_name:['全部','黄茶','乌龙茶','红茶','黑茶','白茶','花茶'],
+				tea_info:[
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'茉莉花茶',
+						price:'￥223.0',
+						type:'花茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'白牡丹',
+						price:'￥1235.0',
+						type:'白茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'白毫银针',
+						price:'￥258.0',
+						type:'白茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'云南普洱茶',
+						price:'￥500.0',
+						type:'黑茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'湖北老青茶',
+						price:'￥400.0',
+						type:'黑茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'霍山黄芽蒙洱银针',
+						price:'￥711.0',
+						type:'黄茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'蒙顶黄芽',
+						price:'￥450.0',
+						type:'黄茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'冻顶乌龙茶',
+						price:'￥620.0',
+						type:'乌龙茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'大红袍',
+						price:'￥3480.0',
+						type:'乌龙茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'祁门红茶',
+						price:'￥468.0',
+						type:'红茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjc0Y2E2YTE1Nzc3Mjk4MTFhMDJiOTg0Y2ZlMzliY2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'正山小种',
+						price:'￥952.0',
+						type:'红茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYTY5N2NjZmUxNzIwNTg1YjcwM2E2OTk2ZWY3N2U4NmEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'西湖龙井特级',
+						price:'￥888.0',
+						type:'绿茶'
+					},
+					{
+						img_url:'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYWNkYWZkYWVmNGVlM2NiNmJlYTFjNWI5MWE2MzQwOGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+						name:'洞庭碧螺春',
+						price:'￥880.0',
+						type:'绿茶'
+					}
+				]
+
+			}
+		})
+	</script>
+</body>
+</html>
